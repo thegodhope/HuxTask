@@ -14,6 +14,7 @@ const contactsRouter = require("./routes/contactRoutes");
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
+app.options("*", cors());
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // define routes
