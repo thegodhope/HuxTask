@@ -5,16 +5,15 @@ const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 require("./config/db");
-const origin = ["https://localhost:3000", "https://localhost:3001"];
 const app = express();
 
 const usersRouter = require("./routes/userRoutes");
 const contactsRouter = require("./routes/contactRoutes");
 
+app.use(cors());
+app.options("*", cors());
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cors({ credentials: true, origin: origin }));
-app.options("*", cors());
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // define routes
